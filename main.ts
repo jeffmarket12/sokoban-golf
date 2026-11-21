@@ -17,9 +17,8 @@ return v;},
 sol='',curCol=px;
 for(let dc of ds){
 let doorCol=dc%W;
-while(curCol<doorCol){sol+='r';curCol++;}
-while(curCol>doorCol){sol+='l';curCol--;}
-let rmap=B(dc,new Set(),RC),rc=new Set(rmap.keys());rc.add(dc);
+while(curCol!=doorCol){sol+=curCol<doorCol?'r':'l';curCol+=curCol<doorCol?1:-1;}
+let rc=new Set(B(dc,new Set(),RC).keys());rc.add(dc);
 let boxes=[],goals=[];
 for(let i of rc){if(G[i]=='$'||G[i]=='*')boxes.push(i);if(G[i]=='.'||G[i]=='*')goals.push(i);}
 boxes.sort((a,b)=>a-b);goals.sort((a,b)=>a-b);
